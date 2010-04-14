@@ -21,3 +21,4 @@ pkg
 ## PROJECT::SPECIFIC
 tmp
 *.so
+*.gemspec
