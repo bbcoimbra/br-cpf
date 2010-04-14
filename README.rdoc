@@ -1,17 +1,31 @@
-= br-cpf
+= BR::CPF
 
-Description goes here.
+Lib implementada em C (gera uma lib compilada nativamente) que calcula e valida CPFs.
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+== Instalação
+
+ sudo gem install br-cpf
+
+== Exemplos
+
+ require 'rubygems'
+ require 'br/cpf'
+
+ BR::CPF.valid? '00000000191'
+  => true
+
+ BR::CPF.valid? 12345678909
+  => true
+
+ BR::CPF.valid? 12345678900
+  => false
+
+ raiz = 0
+ BR::CPF.new(raiz).to_s
+  => '00000000191'
+
+
 
 == Copyright
 
-Copyright (c) 2010 Bruno Coimbra. See LICENSE for details.
+Copyright (c) 2010 Bruno Coimbra. Veja o arquivo LICENSE para mais detalhes.
