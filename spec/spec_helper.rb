@@ -1,9 +1,6 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require 'br-cpf'
+$:.unshift(File.dirname(__FILE__))
+$:.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'br/cpf'
 require 'spec'
 require 'spec/autorun'
-
-Spec::Runner.configure do |config|
-  
-end
+require 'faker_cpf'
