@@ -8,8 +8,11 @@ Lib implementada em C (gera uma lib compilada nativamente) que calcula e valida 
 
 == Exemplos
 
+=== Usar
  require 'rubygems'
  require 'br/cpf'
+
+=== Validar
 
  BR::CPF.valid? '00000000191'
   => true
@@ -20,10 +23,11 @@ Lib implementada em C (gera uma lib compilada nativamente) que calcula e valida 
  BR::CPF.valid? 12345678900
   => false
 
- raiz = 0
+=== Gerar CPF
+
+ raiz = 1
  BR::CPF.new(raiz).to_s
   => '00000000191'
-
 
 
 == Copyright
