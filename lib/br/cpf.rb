@@ -19,7 +19,7 @@ module BR
     end
 
     def to_s
-      "%011d" % to_i
+      "%011d" % @cpf
     end
   end
 end

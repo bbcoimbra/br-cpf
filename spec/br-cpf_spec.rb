@@ -2,6 +2,17 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe BR::CPF do
 
+  context "initializing new CPFs" do
+
+    it "shoult initialize correctly VALID CPFS" do
+      VALID_CPFS_INTEGER.each do |valid_cpf|
+        BR::CPF.new(valid_cpf/100).to_s.should == 
+          valid_cpf.to_s.rjust(11, '0')
+      end
+    end
+
+  end
+
   context "when Fixnum" do
 
     it "should return true for valid cpfs" do
