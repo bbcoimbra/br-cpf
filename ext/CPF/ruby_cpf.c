@@ -6,7 +6,12 @@ static VALUE t_init_cpf(VALUE self, VALUE ruby_cpf_raiz){
     long long cpf = 0, raiz = 0;
     VALUE ruby_cpf;
 
-    raiz = NUM2LL(ruby_cpf_raiz);
+    if(TYPE(ruby_cpf_raiz) == T_STRING) {
+        raiz = NUM2LL(rb_funcall(ruby_cpf_raiz, rb_intern("to_i"), 0));
+    } else {
+        raiz = NUM2LL(ruby_cpf_raiz);
+    }
+
     if(raiz < 1 || raiz > 999999999)
         rb_raise(rb_eArgError, "raiz should be greather than 0 and lesser than 999_999_999");
     cpf = calcula_digito_cpf((long long) raiz);

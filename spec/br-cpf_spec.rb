@@ -4,10 +4,16 @@ describe BR::CPF do
 
   context "initializing new CPFs" do
 
-    it "shoult initialize correctly VALID CPFS" do
+    it "should initialize correctly VALID CPFS" do
       VALID_CPFS_INTEGER.each do |valid_cpf|
         BR::CPF.new(valid_cpf/100).to_s.should == 
           valid_cpf.to_s.rjust(11, '0')
+      end
+    end
+
+    it "should initializa correctly VALID CPFS as string" do
+      VALID_CPFS_STRING.each do |valid_cpf|
+        BR::CPF.new(valid_cpf[0,9]).to_s.should == valid_cpf
       end
     end
 
