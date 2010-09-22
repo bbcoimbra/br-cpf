@@ -45,9 +45,9 @@ module Faker
 
     INVALID_CPFS_INTEGER = VALID_CPFS_INTEGER.collect { |cpf| cpf + 1}
 
-    VALID_CPFS_STRING = VALID_CPFS_INTEGER.collect { |cpf| cpf.to_s }
+    VALID_CPFS_STRING = VALID_CPFS_INTEGER.collect { |cpf| cpf.to_s.rjust(11, '0') }
 
-    INVALID_CPFS_STRING = INVALID_CPFS_INTEGER.collect { |cpf| cpf.to_s}
+    INVALID_CPFS_STRING = INVALID_CPFS_INTEGER.collect { |cpf| cpf.to_s.rjust(11, '0') }
 
   end
 end
