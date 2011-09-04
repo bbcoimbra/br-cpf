@@ -1,5 +1,5 @@
 module BR
-  module CPF
+  class CPF
     VERSION = "1.0.0"
   end
 end
