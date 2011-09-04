@@ -1,21 +1,46 @@
-require File.join(File.dirname(__FILE__), '../CPF')
+require 'ruby-debug'
+require File.join(File.dirname(__FILE__), 'cpf/cpf_wrapper')
 
 module BR
   class CPF
-    class << self
-      alias_method :orig_valid?, :valid?
+
+    CPF_MIN = 1
+    CPF_MAX = 999999999
+
+    extend CPFWrapper
+
+    attr_reader :cpf, :verif
+
+    def initialize(raiz)
+      self.raiz = raiz
+    end
+
+    def valid?
+      @valid
+    end
+
+    def raiz=(raiz)
+      @raiz = raiz.to_i
+      raise ArgumentError, "raiz should be between #{CPF_MIN} and #{CPF_MAX}" if @raiz < CPF_MIN or @raiz > CPF_MAX
+      @cpf = self.class.calc_check_digit(@raiz)
+      @verif = @cpf % 100
+      @valid = true
+    end
+
+    def raiz
+      @raiz
     end
 
     def self.valid?(cpf)
       if cpf.is_a? String
-        orig_valid?(cpf.to_i)
+        is_valid(cpf.to_i)
       else
-        orig_valid?(cpf)
+        is_valid(cpf)
       end
     end
 
     def to_i
-      @raiz * 100 + @verif
+      @cpf
     end
 
     def to_s

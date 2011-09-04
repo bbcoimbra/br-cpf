@@ -1,6 +1,4 @@
-source :rubygems
+source "http://rubygems.org"
 
-group :development, :test do
-  gem 'rake-compiler'
-  gem 'rspec', '~>1.3.0'
-end
+# Specify your gem's dependencies in br-cpf.gemspec
+gemspec

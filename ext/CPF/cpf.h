@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-long long calcula_digito_cpf(long long raiz);
-int e_cpf(long long cpf);
+long long calc_check_digit(long long raiz);
+int is_valid(long long cpf);
 
 #ifdef	__cplusplus
 }

@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "cpf.h"
 
-long long calcula_digito_cpf(long long raiz){
+long long calc_check_digit(long long raiz){
     int produto=0, i, digito;
     long long aux=raiz, cpf;
     lldiv_t divisao;
@@ -27,8 +27,8 @@ long long calcula_digito_cpf(long long raiz){
 }
 
 
-int e_cpf(long long cpf){
-    return cpf==calcula_digito_cpf((long long)cpf / 100);
+int is_valid(long long cpf){
+    return cpf==calc_check_digit((long long)cpf / 100);
 }
 
 
