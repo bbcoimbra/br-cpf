@@ -1,4 +1,4 @@
-= BR::CPF
+= BR::CPF ![Travis-ci status](https://secure.travis-ci.org/bbcoimbra/br-cnpj.png?branch=master)
 
 Lib implementada em C (gera uma lib compilada nativamente) que calcula e valida CPFs.
 Recomendada para Validar CPFs ou Gerar CPFs quando o sistema requer que sejam feitas mais de 1000 Validações/Gerações por segundo.
