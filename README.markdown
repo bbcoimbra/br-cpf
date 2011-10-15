@@ -15,6 +15,7 @@ Recomendada para Validar CPFs ou Gerar CPFs quando o sistema requer que sejam fe
 
 ### Validar
 
+```ruby
  BR::CPF.valid? '00000000191'
   #> true
 
@@ -23,10 +24,11 @@ Recomendada para Validar CPFs ou Gerar CPFs quando o sistema requer que sejam fe
 
  BR::CPF.valid? 12345678900
   #> false
+```
 
 ### Gerar CPF
 
-````ruby
+```ruby
 	raiz = 1
 	BR::CPF.new(raiz).to_s
 	#> '00000000191'
