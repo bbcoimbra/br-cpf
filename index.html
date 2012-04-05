@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Br-cpf by bbcoimbra</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Br-cpf</h1>
+        <p>calcules and validates Brazilian CPF</p>
+        <p class="view"><a href="https://github.com/bbcoimbra/br-cpf">View the Project on GitHub <small>bbcoimbra/br-cpf</small></a></p>
+        <ul>
+          <li><a href="https://github.com/bbcoimbra/br-cpf/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/bbcoimbra/br-cpf/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/bbcoimbra/br-cpf">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>BR::CPF <img src="https://secure.travis-ci.org/bbcoimbra/br-cpf.png?branch=master" alt="Travis-ci status">
+</h1>
+
+<p>Lib implementada em C (gera uma lib compilada nativamente) que calcula e valida CPFs.
+Recomendada para Validar CPFs ou Gerar CPFs quando o sistema requer que sejam feitas mais de 1000 Validações/Gerações por segundo.</p>
+
+<h2>Instalação</h2>
+
+<p>sudo gem install br-cpf</p>
+
+<h2>Exemplos</h2>
+
+<h3>Usar</h3>
+
+<div class="highlight">
+<pre><span class="nb">require</span> <span class="s1">'rubygems'</span>
+<span class="nb">require</span> <span class="s1">'br/cpf'</span>
+</pre>
+</div>
+
+
+<h3>Validar</h3>
+
+<div class="highlight">
+<pre><span class="no">BR</span><span class="o">::</span><span class="no">CPF</span><span class="o">.</span><span class="n">valid?</span> <span class="s1">'00000000191'</span>
+ <span class="c1">#&gt; true</span>
+
+<span class="no">BR</span><span class="o">::</span><span class="no">CPF</span><span class="o">.</span><span class="n">valid?</span> <span class="mi">12345678909</span>
+ <span class="c1">#&gt; true</span>
+
+<span class="no">BR</span><span class="o">::</span><span class="no">CPF</span><span class="o">.</span><span class="n">valid?</span> <span class="mi">12345678900</span>
+ <span class="c1">#&gt; false</span>
+</pre>
+</div>
+
+
+<h3>Gerar CPF</h3>
+
+<div class="highlight">
+<pre><span class="n">raiz</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="no">BR</span><span class="o">::</span><span class="no">CPF</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">raiz</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span>
+ <span class="c1">#&gt; '00000000191'</span>
+</pre>
+</div>
+
+
+<h2>Benchmark sobre uma implementação puro Ruby</h2>
+
+<p>Comparação de validação com a brcpfcnpj (Brazilian Rails)</p>
+
+<div class="highlight">
+<pre><span class="nv">$ </span>cat benchmark.rb
+</pre>
+</div>
+
+
+<div class="highlight">
+<pre><span class="nb">require</span> <span class="s2">"rubygems"</span>
+<span class="nb">require</span> <span class="s2">"br/cpf"</span>
+<span class="nb">require</span> <span class="s2">"brcpfcnpj"</span>
+<span class="nb">require</span> <span class="s2">"benchmark"</span>
+
+<span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">10_000</span><span class="p">,</span> <span class="mi">100_000</span><span class="p">,</span> <span class="mi">1_000_000</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+    <span class="nb">puts</span> <span class="s2">"Teste com n # </span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2">"</span>
+    <span class="no">Benchmark</span><span class="o">.</span><span class="n">bm</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">report</span> <span class="p">{</span> <span class="n">n</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="no">BR</span><span class="o">::</span><span class="no">CPF</span><span class="o">.</span><span class="n">valid?</span><span class="p">(</span><span class="nb">rand</span><span class="p">(</span><span class="mi">999_999_999_99</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="s1">'0'</span><span class="p">))</span> <span class="p">}</span> <span class="p">}</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">report</span> <span class="p">{</span> <span class="n">n</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="no">Cpf</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">rand</span><span class="p">(</span><span class="mi">999_999_999_99</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="s1">'0'</span><span class="p">))</span><span class="o">.</span><span class="n">valido?</span> <span class="p">}</span> <span class="p">}</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+
+
+<p>Resultados</p>
+
+<pre><code>Teste com n = 1
+  user     system      total        real
+  0.000000   0.000000   0.000000 (  0.000053)
+  0.000000   0.000000   0.000000 (  0.000243)
+Teste com n = 10
+  user     system      total        real
+  0.000000   0.000000   0.000000 (  0.000080)
+  0.000000   0.000000   0.000000 (  0.001187)
+Teste com n = 100
+  user     system      total        real
+  0.000000   0.000000   0.000000 (  0.002193)
+  0.020000   0.000000   0.020000 (  0.011373)
+Teste com n = 1000
+  user     system      total        real
+  0.020000   0.000000   0.020000 (  0.017329)
+  0.150000   0.000000   0.150000 (  0.169375)
+Teste com n = 10000
+  user     system      total        real
+  0.100000   0.000000   0.100000 (  0.094112)
+  1.490000   0.010000   1.500000 (  1.512164)
+Teste com n = 100000
+  user     system      total        real
+  0.850000   0.000000   0.850000 (  0.874577)
+  15.050000   0.010000  15.060000 ( 15.193196)
+Teste com n = 1000000
+  user     system      total        real
+  8.570000   0.010000   8.580000 (  8.631888)
+  150.620000   0.210000 150.830000 (152.158936)
+</code></pre>
+
+<h2>Desvantagens</h2>
+
+<p>Por precisar compilar a extensão em C, acaba incompatível com sistemas que não tem um compilador em C (Windows).</p>
+
+<p>E quando o ritmo de comparação for menor que 1000 por segundo a diferença é pequena, por volta de de 0.15 segundos. Talvez o acumulo de dependência não valha a pena.</p>
+
+<h2>Copyright</h2>
+
+<p>Copyright (c) 2010 Bruno Coimbra. Veja o arquivo LICENSE para mais detalhes.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/bbcoimbra">bbcoimbra</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+  </body>
+</html>
