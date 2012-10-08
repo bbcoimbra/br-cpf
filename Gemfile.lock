@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    br-cpf (1.0.0)
+    br-cpf (1.0.1)
       ffi (~> 1.0)
 
 GEM
