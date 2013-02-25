@@ -99,4 +99,4 @@ E quando o ritmo de comparação for menor que 1000 por segundo a diferença é 
 
 ## Copyright
 
-Copyright (c) 2010 Bruno Coimbra. Veja o arquivo LICENSE para mais detalhes.
+MIT Licence. Copyright (c) 2009-2013 Bruno Coimbra. Veja o arquivo LICENSE para mais detalhes.
