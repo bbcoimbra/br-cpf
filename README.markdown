@@ -1,4 +1,4 @@
-# BR::CPF ![Travis-ci status](https://secure.travis-ci.org/bbcoimbra/br-cpf.png?branch=master)
+# BR::CPF ![Travis-ci status](https://secure.travis-ci.org/bbcoimbra/br-cpf.png?branch=master) [![Code Climate](https://codeclimate.com/github/bbcoimbra/br-cpf.png)](https://codeclimate.com/github/bbcoimbra/br-cpf)
 
 Lib implementada em C (gera uma lib compilada nativamente) que calcula e valida CPFs.
 Recomendada para Validar CPFs ou Gerar CPFs quando o sistema requer que sejam feitas mais de 1000 Validações/Gerações por segundo.
