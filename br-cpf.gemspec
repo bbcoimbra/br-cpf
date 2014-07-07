@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{Lib implemented in C that calculates and validates CPF using FFI.}
   s.description = %q{}
 
-  s.add_dependency(%q<ffi>, ["~> 1.0"])
+  s.add_dependency(%q<ffi>, ["~> 1.9"])
 
   s.add_development_dependency(%q<rspec>, ["~> 1.3"])
 
