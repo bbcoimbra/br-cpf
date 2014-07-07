@@ -12,6 +12,11 @@ task :compile_ext do
   cd 'ext/CPF'
   system 'ruby extconf.rb'
   system 'make'
-  cp "CPF.so", "#{root_dir}/lib/"
+  case RbConfig::CONFIG['host_os']
+  when /darwin|mac os/
+    cp "CPF.bundle", "#{root_dir}/lib/"
+  else
+    cp "CPF.so", "#{root_dir}/lib/"
+  end
   cd root_dir
 end
