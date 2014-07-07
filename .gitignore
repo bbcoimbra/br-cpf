@@ -14,15 +14,18 @@ tmtags
 *.swp
 
 ## BUNDLE
-.bundle
+*.bundle
 
 ## PROJECT::GENERAL
 coverage
 rdoc
 pkg
 doc
+*.log
 
 ## PROJECT::SPECIFIC
 tmp
+ext/CPF/Makefile
 *.so
+*.o
 *.gemspec
