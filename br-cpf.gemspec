@@ -12,9 +12,9 @@ Gem::Specification.new do |s|
   s.summary     = %q{Lib implemented in C that calculates and validates CPF using FFI.}
   s.description = %q{}
 
-  s.add_dependency(%q<ffi>, ["~> 1.9"])
+  s.add_dependency(%q<ffi>, ["~> 1.12.2"])
 
-  s.add_development_dependency(%q<rspec>, ["~> 1.3"])
+  s.add_development_dependency(%q<rspec>, ["~> 3.9"])
 
   s.extensions    = `git ls-files -- ext/*`.split("\n").select{|f| f =~ /extconf/}
   s.files         = `git ls-files`.split("\n")

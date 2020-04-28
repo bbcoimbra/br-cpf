@@ -6,14 +6,13 @@ describe BR::CPF do
 
     it "should initialize correctly VALID CPFS" do
       VALID_CPFS_INTEGER.each do |valid_cpf|
-        BR::CPF.new(valid_cpf/100).to_s.should == 
-          valid_cpf.to_s.rjust(11, '0')
+        expect(BR::CPF.new(valid_cpf/100).to_s).to eq valid_cpf.to_s.rjust(11, '0')
       end
     end
 
     it "should initializa correctly VALID CPFS as string" do
       VALID_CPFS_STRING.each do |valid_cpf|
-        BR::CPF.new(valid_cpf[0,9]).to_s.should == valid_cpf
+        expect(BR::CPF.new(valid_cpf[0,9]).to_s).to eq valid_cpf
       end
     end
 
@@ -23,13 +22,13 @@ describe BR::CPF do
 
     it "should return true for valid cpfs" do
       VALID_CPFS_INTEGER.each do |valid_cpf|
-        BR::CPF.valid?(valid_cpf).should be_true
+        expect(BR::CPF.valid?(valid_cpf)).to be
       end
     end
 
     it "should return false for invalid cpfs" do
       INVALID_CPFS_INTEGER.each do |invalid_cpf|
-        BR::CPF.valid?(invalid_cpf).should be_false
+        expect(BR::CPF.valid?(invalid_cpf)).to_not be
       end
     end
 
@@ -39,13 +38,13 @@ describe BR::CPF do
 
     it "should return true for valid cpfs" do
       VALID_CPFS_STRING.each do |valid_cpf|
-        BR::CPF.valid?(valid_cpf).should be_true
+        expect(BR::CPF.valid?(valid_cpf)).to be
       end
     end
 
     it "should return false for invalid cpfs" do
       INVALID_CPFS_STRING.each do |invalid_cpf|
-        BR::CPF.valid?(invalid_cpf).should be_false
+        expect(BR::CPF.valid?(invalid_cpf)).to_not be
       end
     end
 
